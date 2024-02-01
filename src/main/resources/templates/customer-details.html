@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Details</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<h1>Customer Details</h1>
+
+<!-- Display customer details -->
+<table>
+    <tr>
+        <th>ID</th>
+        <td th:text="${customer.getId}"></td>
+    </tr>
+    <tr>
+        <th>First Name</th>
+        <td th:text="${customer.firstName}"></td>
+    </tr>
+    <tr>
+        <th>Last Name</th>
+        <td th:text="${customer.lastName}"></td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td th:text="${customer.email}"></td>
+    </tr>
+    <tr>
+        <th>Phone</th>
+        <td th:text="${customer.phone}"></td>
+    </tr>
+    <tr>
+        <th>Address</th>
+        <td th:text="${customer.address}"></td>
+    </tr>
+    <tr>
+        <th>Street</th>
+        <td th:text="${customer.street}"></td>
+    </tr>
+    <tr>
+        <th>State</th>
+        <td th:text="${customer.state}"></td>
+    </tr>
+    <tr>
+        <th>City</th>
+        <td th:text="${customer.city}"></td>
+    </tr>
+</table>
+
+<!-- Back to Dashboard -->
+<a th:href="@{/dashboard}">Back to Dashboard</a>
+</body>
+</html>

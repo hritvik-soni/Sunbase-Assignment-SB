@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<h1>Customer Dashboard</h1>
+
+<div class="button-container">
+    <!-- Add Customer button -->
+    <a th:href="@{/add-customer}" class="button">Add Customer</a>
+
+    <!-- Sync Customers button -->
+    <a th:href="@{/sync-customers}" class="button">Sync Customers</a>
+
+
+    <!-- Search form -->
+    <form th:action="@{/search-customers}" method="post">
+        <label>
+            <input type="text" name="keyword" placeholder="Search by keyword">
+        </label>
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- Sort form -->
+    <form th:action="@{/sort-customers}"  method="get">
+        <label>
+            <select name="sortBy">
+                <option value="firstName">First Name</option>
+                <!--            <option value="lastName">Last Name</option>-->
+                <option value="email">Email</option>
+                <option value="phone">Phone</option>
+                <option value="city">City</option>
+            </select>
+        </label>
+        <button type="submit">Sort</button>
+    </form>
+</div>
+<!-- Display customers -->
+<table>
+    <thead>
+    <tr>
+        <th>Uuid</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>Street</th>
+        <th>State</th>
+        <th>City</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="customer : ${customers}">
+
+        <td th:text="${customer.getId}"></td>
+        <td th:text="${customer.firstName}"></td>
+        <td th:text="${customer.lastName}"></td>
+        <td th:text="${customer.email}"></td>
+        <td th:text="${customer.phone}"></td>
+        <td th:text="${customer.address}"></td>
+        <td th:text="${customer.street}"></td>
+        <td th:text="${customer.state}"></td>
+        <td th:text="${customer.city}"></td>
+        <td>
+            <a th:href="@{/customer/{id}(id=${customer.getId})}">View</a>
+            <a th:href="@{/update-customer/{id}(id=${customer.getId})}">Update</a>
+            <a th:href="@{/delete-customer/{id}(id=${customer.getId})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+<div th:if="${totalPages > 1}">
+    <span>Page <span  th:text="${currentPage + 1}"></span> of <span th:text="${totalPages}"></span></span>
+    <a th:href="@{/dashboard(page=0, size=10)}">First</a>
+    <a th:href="@{/dashboard(page=${currentPage - 1}, size=10)}" th:if="${currentPage > 0}">Previous</a>
+    <a th:href="@{/dashboard(page=${currentPage + 1}, size=10)}" th:if="${currentPage < totalPages - 1}">Next</a>
+    <a th:href="@{/dashboard(page=${totalPages - 1}, size=10)}">Last</a>
+</div>
+</body>
+</html>

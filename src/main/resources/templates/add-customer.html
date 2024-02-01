@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Customer</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+<h1>Add Customer</h1>
+
+<!-- Add Customer form -->
+<form th:action="@{/add-customer}" method="post" th:object="${customer}">
+    <label>First Name: <input type="text" th:field="*{firstName}" required></label>
+    <label>Last Name: <input type="text" th:field="*{lastName}" required></label>
+    <label>Email: <input type="email" th:field="*{email}" required></label>
+    <label>Phone: <input type="tel" th:field="*{phone}" required></label>
+    <label>Address: <input type="text" th:field="*{address}" required></label>
+    <label>Street: <input type="text" th:field="*{street}" required></label>
+    <label>City: <input type="text" th:field="*{city}" required></label>
+    <label>State: <input type="text" th:field="*{state}" required></label>
+
+
+    <button type="submit">Add</button>
+</form>
+
+<!-- Back to Dashboard -->
+<a th:href="@{/dashboard}">Back to Dashboard</a>
+</body>
+</html>
